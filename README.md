@@ -26,7 +26,7 @@ $ python -m venv venv
 Activate the virtual environment:
 
 ```
-$ source venv/bin/activate			# Linux
+$ source venv/bin/activate		# Linux
 $ source venv/Scripts/activate		# Windows
 ```
 
