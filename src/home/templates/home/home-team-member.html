@@ -8,7 +8,7 @@
 				<div class="article-metadata">
 					<small class="mr-2">{{ project.author }}</small>
 					<small class="text-muted">Started: {{ project.date|date:"d-M-Y" }}</small>
-					<small class="text-muted">Updated: {{ project.date|date_updated:"d-M-Y" }}</small>
+					<small class="text-muted">Updated: {{ project.date_updated|date:"d-M-Y" }}</small>
 				</div>
 				<h2><a class="article-title" href="{% url 'post-detail' post.id %}">{{ project.title }}</a></h2>
 				<p class="article-content">{{ project.content }}</p>
