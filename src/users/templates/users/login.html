@@ -3,16 +3,28 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
-		<div class="content-section">
-			<form method="POST">
-				{% csrf_token %}
-				<fieldset class="form-group">
-					<legend class="border-bottom mb-4">Log In</legend>
-					{{ form|crispy }}
-				</fieldset>
-				<div class="form-group">
-					<button class="btn btn-outline-info" type="submit">Log in</button>
+    <div class="top-header text-light px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+      <h1 class="display-4">Log In</h1>
+      <p class="lead">For profile and project management.</p>
+    </div>
+
+    <div class="container">
+      <div class="card-deck text-center">
+			<div class="card text-white bg-dark mb-4 shadow-sm">
+				<div class="card-body">
+					<div class="content-section">
+						<form method="POST">
+							{% csrf_token %}
+							<fieldset class="form-group">
+								{{ form|crispy }}
+							</fieldset>
+							<div class="form-group">
+								<button class="btn btn-outline-info" type="submit">Log in</button>
+							</div>
+						</form>
+					</div>
 				</div>
-			</form>
-		</div>
+			</div>
+      </div>
+    </div>
 {% endblock content %}
