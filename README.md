@@ -2,6 +2,8 @@
 
 The Code Scamps website, made with ❤️ (and Django).
 
+![Website Preview](preview.png)
+
 ## Getting Started
 
 These instructions will get you up and running on your local machine for development.
