@@ -11,7 +11,7 @@
 		{% for member in members %}
 			<div class="card mb-4 shadow-sm">
 			<div class="card-header">
-				<h4 class="my-0 font-weight-normal"><a href="{% url 'home-team-member' member.username %}">{{ member.username }}</a></h4>
+				<h4 class="my-0 font-weight-normal">{{ member.first_name}} {{ member.last_name}}</h4>
 			</div>
 			<div class="card-body">
 				<img class="rounded-circle article-img img-thumbnail" src="{{ member.profile.image.url }}">
@@ -21,7 +21,7 @@
 				<li>Email support</li>
 				<li>Help center access</li>
 				</ul>
-				<button type="button" class="btn btn-lg btn-block btn-outline-primary">Sign up for free</button>
+				<a class="btn btn-lg btn-block btn-primary text-light" href="{% url 'home-team-member' member.username %}">View Projects</a>
 			</div>
 			</div>
 		{% endfor %}
