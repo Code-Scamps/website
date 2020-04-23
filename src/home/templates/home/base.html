@@ -1,53 +1,93 @@
 {% load static %}
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-		<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">	
-		<link rel="stylesheet" href="{% static 'home/main.css' %}">
-		<title>Code Scamps</title>
-	</head>
-	<body>
-		<header class="site-header">
-			<nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
-				<div class="container">
-					<a class="navbar-brand mr-4" href="/">Code Scamps</a>
-					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
-						<span class="navbar-toggler-icon"></span>
-					</button>
-				</div>
-			</nav>
-		</header>
-		<main role="main" class="container">
-			<div class="row">
-				<div class="col-md-8">
-					{% if messages %}
-						{% for message in messages %}
-							<div class="alert alert-{{ message.tags }}">{{ message }}</div>
-						{% endfor %}
-					{% endif %}
-					{% block content %}{% endblock %}
-				</div>
-				<div class="col-md-4">
-					<div class="content-section">
-						<h3>Our Sidebar</h3>
-						<p class='text-muted'>
-							Sidebar.
-							<ul class="list-group">
-								<li class="list-group-item list-group-item-light">Option</li>
-								<li class="list-group-item list-group-item-light">Option</li>
-								<li class="list-group-item list-group-item-light">Option</li>
-								<li class="list-group-item list-group-item-light">Option</li>
-							</ul>
-						</p>
-					</div>
-				</div>
+  <head>
+	<!-- Meta -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="apple-touch-icon" sizes="180x180" href="{% static 'home/favicon/apple-touch-icon.png' %}">
+	<link rel="icon" type="image/png" sizes="32x32" href="{% static 'home/favicon/favicon-32x32.png' %}">
+	<link rel="icon" type="image/png" sizes="16x16" href="{% static 'home/favicon/favicon-16x16.png' %}">
+	<link rel="manifest" href="{% static 'home/favicon/site.webmanifest' %}">
+	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">	
+	<link rel="stylesheet" href="{% static 'home/css/main.css' %}">
+	<title>Code Scamps</title>
+  </head>
+  <body>
+	<!-- Navbar -->
+    <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-dark shadow-sm">
+      <h5 class="my-0 mr-md-auto font-weight-normal"><a class="text-light" href="{% url 'home-landing' %}">Code Scamps</a></h5>
+      <nav class="my-2 my-md-0 mr-md-3">
+	    <a class="p-2 text-light" href="{% url 'home-team' %}">Our Team</a>
+        <a class="p-2 text-light" href="#">Projects</a>
+        <a class="p-2 text-light" href="#">News</a>
+        <a class="p-2 text-light" href="#">Contact</a>
+		{% if user.is_authenticated %}
+			<a class="p-2 text-info" href="{% url 'profile' %}">{{ user.username }}</a>
+		{% endif %}
+      </nav>
+	  {% if user.is_authenticated %}
+	    <a class="btn btn-danger" href="{% url 'logout' %}">Log out</a>
+	  {% else %}
+        <a class="btn btn-outline-primary" href="{% url 'login' %}">Log in</a>
+	  {% endif %}
+    </div>
+	<!-- Main Content -->
+	{% block content %}
+	{% endblock %}
+	<!-- Footer -->
+	<div class="container">	
+	  <footer class="text-light pt-4 my-md-5 pt-md-5 border-top">
+		<div class="row">
+			<div class="col-12 col-md">
+				<img class="mb-2" src="{% static 'home/img/Scamps-002-Small-NoBG.png' %}" alt="">
+				<small class="d-block mb-3 text-muted">&copy; 2017-2018</small>
 			</div>
-		</main>
-		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-	</body>
+			<div class="col-6 col-md">
+				<h5>Features</h5>
+				<ul class="list-unstyled text-small">
+					<li><a class="text-muted" href="#">Cool stuff</a></li>
+					<li><a class="text-muted" href="#">Random feature</a></li>
+					<li><a class="text-muted" href="#">Team feature</a></li>
+					<li><a class="text-muted" href="#">Stuff for developers</a></li>
+					<li><a class="text-muted" href="#">Another one</a></li>
+					<li><a class="text-muted" href="#">Last time</a></li>
+				</ul>
+			</div>
+			<div class="col-6 col-md">
+				<h5>Resources</h5>
+				<ul class="list-unstyled text-small">
+					<li><a class="text-muted" href="#">Resource</a></li>
+					<li><a class="text-muted" href="#">Resource name</a></li>
+					<li><a class="text-muted" href="#">Another resource</a></li>
+					<li><a class="text-muted" href="#">Final resource</a></li>
+				</ul>
+			</div>
+			<div class="col-6 col-md">
+				<h5>About</h5>
+				<ul class="list-unstyled text-small">
+					<li><a class="text-muted" href="#">Team</a></li>
+					<li><a class="text-muted" href="#">Locations</a></li>
+					<li><a class="text-muted" href="#">Privacy</a></li>
+					<li><a class="text-muted" href="#">Terms</a></li>
+				</ul>
+			</div>
+		</div>
+      </footer>
+	</div>
+	<!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
+    <script src="../../assets/js/vendor/popper.min.js"></script>
+    <script src="../../dist/js/bootstrap.min.js"></script>
+    <script src="../../assets/js/vendor/holder.min.js"></script>
+    <script>
+      Holder.addTheme('thumb', {
+        bg: '#55595c',
+        fg: '#eceeef',
+        text: 'Thumbnail'
+      });
+    </script>
+  </body>
 </html>
