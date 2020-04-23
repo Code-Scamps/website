@@ -1,14 +1,30 @@
-{% extends "blog/base.html" %}
+{% extends "home/base.html" %}
 
 {% block content %}
-	{% for member in members %}
-		<article class="media content-section">
-			<img class="rounded-circle article-img" src="{{ member.profile.image.url }}">
-			<div class="media-body">
-				<div class="article-metadata">
-					<a class="mr-2" href="{% url 'home-team-member' member.username %}">{{ member.username }}</a>
-				</div>
+    <div class="top-header text-light px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+      <h1 class="display-4">The Team</h1>
+      <p class="lead">Check out our team members and their awesome projects.</p>
+    </div>
+
+    <div class="container">
+      <div class="card-deck mb-3 text-center">
+		{% for member in members %}
+			<div class="card mb-4 shadow-sm">
+			<div class="card-header">
+				<h4 class="my-0 font-weight-normal"><a href="{% url 'home-team-member' member.username %}">{{ member.username }}</a></h4>
 			</div>
-		</article>
-	{% endfor %}
+			<div class="card-body">
+				<img class="rounded-circle article-img img-thumbnail" src="{{ member.profile.image.url }}">
+				<ul class="list-unstyled mt-3 mb-4">
+				<li>10 users included</li>
+				<li>2 GB of storage</li>
+				<li>Email support</li>
+				<li>Help center access</li>
+				</ul>
+				<button type="button" class="btn btn-lg btn-block btn-outline-primary">Sign up for free</button>
+			</div>
+			</div>
+		{% endfor %}
+      </div>
+    </div>
 {% endblock content %}
