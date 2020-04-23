@@ -13,7 +13,6 @@ class TeamView(ListView):
     model = User
     template_name = 'home/home-team.html'
     context_object_name = 'members'
-    ordering = ['date']
 
 
 class TeamMemberView(ListView):
